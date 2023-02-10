@@ -1,9 +1,10 @@
 from typing import Union
-
 from fastapi import FastAPI
 
-app = FastAPI()
+from routers import wishes
 
+app = FastAPI()
+app.include_router(wishes.router)
 
 @app.get("/")
 def read_root():
