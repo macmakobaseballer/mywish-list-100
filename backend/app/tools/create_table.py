@@ -1,7 +1,5 @@
 import boto3
-from dotenv import load_dotenv
-from app import settings
-
+from app.core.config import settings
 
 def create_table(dynamodb=None):
     table = dynamodb.create_table(
@@ -15,7 +13,6 @@ def create_table(dynamodb=None):
 
 
 if __name__ == "__main__":
-    load_dotenv()
     dynamodb = boto3.resource(
         service_name="dynamodb",
         endpoint_url=settings.DYN_ENDPOINT_URL,
