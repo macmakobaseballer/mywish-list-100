@@ -1,5 +1,5 @@
 import boto3
-from app.core.config import settings
+from core import settings
 
 def create_table(dynamodb=None):
     table = dynamodb.create_table(

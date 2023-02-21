@@ -1,7 +1,7 @@
 from typing import Union
 from fastapi import FastAPI
 
-from routers import wishes
+from app.routers import wishes
 
 app = FastAPI()
 app.include_router(wishes.router)
