@@ -7,7 +7,7 @@ router = APIRouter()
 
 
 @router.get("/wishes")
-async def get_wish_list(account_id):
+async def get_wish_list(account_id: str):
     res = get_wishes_all(account_id)
     return res
     
@@ -26,6 +26,6 @@ async def update_wish():
     pass
 
 
-@router.delete("/wishes/{id}")
+@router.delete("/wishes/{wish_id}")
 async def delete_wish():
     pass

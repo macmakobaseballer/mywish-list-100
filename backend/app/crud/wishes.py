@@ -5,13 +5,12 @@ from app.models.wishes import WishModel
 from app.schemas.wishes import Wish
 
 
-
-def create_wish_one(data: Wish):
+def create_wish_one(item: Wish):
     new_wish = WishModel(
-        wish_id=data.wish_id,
-        account_id=data.account_id,
-        title=data.title,
-        description=data.description,
+        wish_id=item.wish_id,
+        account_id=item.account_id,
+        title=item.title,
+        description=item.description,
     )
     new_wish.save()
 
@@ -23,8 +22,15 @@ def create_wish_one(data: Wish):
     }
 
 def get_wishes_all(account_id: str):
-    all_wishes = WishModel.query(account_id)
+    wishes = WishModel.query(account_id)
+    wish_list = []
+    for wish in wishes:
+        wish_list.append({
+            "wish_id": wish.wish_id,
+            "title": wish.title,
+            "description": wish.description
+        })
 
     return {
-        "wishes": all_wishes
+        "wishes": wish_list
     }
