@@ -4,8 +4,9 @@ from pydantic import BaseModel
 
 class Wish(BaseModel):
     wish_id: int
+    account_id: str
     title: str
-    memo: str
+    description: str
     status: str
 
 class WishList(BaseModel):
