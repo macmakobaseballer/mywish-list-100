@@ -34,3 +34,16 @@ def get_wishes_all(account_id: str):
     return {
         "wishes": wish_list
     }
+
+def get_wish_by_id(account_id: str,wish_id: int):
+    a_wish = WishModel.query(account_id,WishModel.wish_id == wish_id)
+    if a_wish:
+        return {
+            "title": a_wish.title,
+            "description": a_wish.description
+        }
+    else:
+        return {
+            "status": 404,
+            "message": "Wish not found"
+        }
