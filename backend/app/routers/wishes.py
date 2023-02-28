@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.crud.wishes import create_wish
+from app.crud.wishes import create_wish_one
 from app.crud.wishes import get_wishes_all
 from app.schemas.wishes import Wish
 
@@ -18,7 +18,7 @@ async def get_wish_by_id():
 
 @router.post("/wishes")
 async def create_wish_list(wish: Wish):
-    res = create_wish(wish)
+    res = create_wish_one(wish)
     return res
 
 @router.put("/wishes/{wish_id}")
