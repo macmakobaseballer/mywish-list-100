@@ -4,8 +4,8 @@ from core import settings
 def create_table(dynamodb=None):
     table = dynamodb.create_table(
         TableName="wish_list",
-        KeySchema=[{"AttributeName": "account_id", "KeyType": "HASH"}],
-        AttributeDefinitions=[{"AttributeName": "account_id", "AttributeType": "S"}],
+        KeySchema=[{"AttributeName": "login_id", "KeyType": "HASH"}],
+        AttributeDefinitions=[{"AttributeName": "login_id", "AttributeType": "S"}],
         ProvisionedThroughput={"ReadCapacityUnits": 10, "WriteCapacityUnits": 10},
     )
 

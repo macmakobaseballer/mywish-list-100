@@ -8,42 +8,46 @@ from app.schemas.wishes import Wish
 def create_wish_one(item: Wish):
     new_wish = WishModel(
         wish_id=item.wish_id,
-        account_id=item.account_id,
+        login_id=item.login_id,
         title=item.title,
         description=item.description,
+        status=item.status
     )
     new_wish.save()
 
     return {
-        "status": 200,
         "message": "Created Successfully",
         "wish_id": new_wish.wish_id,
-        "title": new_wish.title
+        "title": new_wish.title,
+        "status": new_wish.status
     }
 
-def get_wishes_all(account_id: str):
-    wishes = WishModel.query(account_id)
+def get_wishes_all(login_id: str):
+    wishes = WishModel.query(login_id)
     wish_list = []
     for wish in wishes:
         wish_list.append({
             "wish_id": wish.wish_id,
             "title": wish.title,
-            "description": wish.description
+            "description": wish.description,
+            "status": wish.status
         })
 
     return {
         "wishes": wish_list
     }
 
-def get_wish_by_id(account_id: str,wish_id: int):
-    a_wish = WishModel.query(account_id,WishModel.wish_id == wish_id)
+def get_wish_by_id(login_id: str, wish_id: int):
+    a_wish = WishModel.get(login_id,wish_id)
     if a_wish:
         return {
+            "wish_id": a_wish.wish_id,
             "title": a_wish.title,
-            "description": a_wish.description
+            "description": a_wish.description,
+            "status": a_wish.status
         }
     else:
         return {
             "status": 404,
-            "message": "Wish not found"
+            "message": "A wish not found"
         }
